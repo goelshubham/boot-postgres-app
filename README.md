@@ -24,5 +24,10 @@ We can execute this app on two different ports and hit /api/save endpoint for sa
 
 We are making our transaction serialized. 
 
+Also know the difference between JPA Query and Types Query - https://www.objectdb.com/java/jpa/query/execute
+
+Tutorials referred:
+
+
 
 
