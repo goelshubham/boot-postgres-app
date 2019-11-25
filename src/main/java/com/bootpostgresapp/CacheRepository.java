@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 public interface CacheRepository extends CrudRepository<Cache, Integer> {
 	
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	@QueryHints({@QueryHint(name = "javax.persistence.lock.timeout",value = "50000")})
-	public Optional<Cache> findById(int id);
+	@QueryHints({@QueryHint(name = "javax.persistence.lock.timeout",value = "5000")})
+	public Optional<Cache> findById(Integer id);
 	
 }
