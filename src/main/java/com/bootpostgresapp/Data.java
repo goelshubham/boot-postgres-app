@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cache")
-public class Cache implements Serializable {
+@Table(name = "data")
+public class Data implements Serializable {
 	
 	private static final long serialVersionUID = -1553033847835589292L;
 
@@ -22,7 +22,7 @@ public class Cache implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cache [id=" + id + ", name=" + name + "]";
+		return "Data [id=" + id + ", name=" + name + "]";
 	}
 
 	public int getId() {

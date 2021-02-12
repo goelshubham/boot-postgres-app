@@ -34,12 +34,16 @@ public class CacheService {
 	@Autowired
 	private Repository repository;
 
-	public Cache fetchData(int id) {
+	public Cache fetchCache(int id) {
 		Optional<Cache> op = Optional.empty();
 		return repository.getById(id).get();
 	}
 
-	public void saveData(Cache cache) {
+	public void saveCache(Cache cache) {
 		repository.save(cache);
+	}
+	
+	public void release() {
+		repository.release();
 	}
 }

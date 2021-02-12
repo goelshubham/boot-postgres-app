@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class Repository {
+public class DataRepository {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -30,20 +30,20 @@ public class Repository {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public Optional<Cache> getById(int id){
-		List<Cache> list = em.createQuery("select c from Cache c where c.id = ?1")
+	public Optional<Data> getById(int id){
+		List<Data> list = em.createQuery("select c from Data c where c.id = ?1")
 							.setParameter(1, id)
 							.setHint("javax.persistence.lock.timeout", 30000)
 							.setLockMode(LockModeType.PESSIMISTIC_WRITE)
 							.getResultList();
 
 		if(list == null || list.isEmpty()) {
-			Cache newCache = new Cache();
-			newCache.id = 1;
-			newCache.name = "name during fetch";
-			em.persist(newCache);
+			Data newData = new Data();
+			newData.id = 1;
+			newData.name = "name during fetch";
+			em.persist(newData);
 			
-			list = em.createQuery("select c from Cache c where c.id = ?1")
+			list = em.createQuery("select c from Data c where c.id = ?1")
 					.setParameter(1, id)
 					.setHint("javax.persistence.lock.timeout", 30000)
 					.setLockMode(LockModeType.PESSIMISTIC_WRITE)
@@ -52,12 +52,12 @@ public class Repository {
 		return Optional.ofNullable(list.get(0));
 	}
 	
-	public void save(Cache cache) {
-		cache = em.find(Cache.class, cache.getId());
-		if(cache == null) {
-			em.persist(cache);
+	public void save(Data Data) {
+		Data = em.find(Data.class, Data.getId());
+		if(Data == null) {
+			em.persist(Data);
 		}else {
-			cache = em.merge(cache);
+			Data = em.merge(Data);
 		}
 		em.flush();
 	}
